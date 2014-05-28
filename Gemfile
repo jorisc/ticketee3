@@ -24,11 +24,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test, :development  do
-	gem 'rspec-rails', "~> 2.12"	
+
+	gem 'rspec-rails', '~> 2.12'	
 end
 
 group :test do
-	gem 'capybara', "2.0.2"
+	gem 'capybara', '2.0.2'
+	gem 'factory_girl_rails', '~>4.0'
 end
 
 
