@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>
+  <nav>
+<%= link_to "Sign up", new_user_path %>
+</nav>
+<title>
   	<% if content_for?(:title) %>
   	<%= yield(:title) %>
   	<% else %>
