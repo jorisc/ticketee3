@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 private
+
+
   def authorize_admin!
     require_signin!
 
@@ -12,6 +14,7 @@ private
       redirect_to root_path
     end
   end
+  
   def require_signin!
   	if current_user.nil?
   		flash[:error] =
