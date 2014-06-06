@@ -11,3 +11,13 @@ end
 RSpec.configure do |c|
 	c.include AuthenticationHelpers, type: :feature
 end
+
+module AuthHelpers
+  def sign_in(user)
+    session[:user_id] = user.id
+  end
+end
+
+RSpec.configure do |c|
+  c.include AuthHelpers, type: :controller ## door type,controller wordt alleen in controller specs gebruikt.
+end

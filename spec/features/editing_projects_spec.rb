@@ -3,6 +3,11 @@ require 'factory_girl_rails'
 
 feature "Editing Projects" do
 	before do
+		sign_in_as!(FactoryGirl.create(:admin_user))
+		visit '/'
+	end
+	
+	before do
 		FactoryGirl.create(:project, name: "TextMate 2")
 		visit "/"
 		click_link "TextMate 2"

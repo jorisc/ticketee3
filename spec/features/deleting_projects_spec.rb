@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 feature "Deleting projects" do 
+	before do
+		sign_in_as!(FactoryGirl.create(:admin_user))
+		visit '/'
+	end
+	
 	scenario "Deleting a project" do
 		FactoryGirl.create(:project, name: 'TextMate 2') 
 		visit "/"
