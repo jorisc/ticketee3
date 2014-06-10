@@ -3,6 +3,11 @@ Rails.application.routes.draw do
     resources :users
   end
 
+   namespace :admin do
+        root :to => "base#index"
+        resources :users
+      end
+
  get '/signin', to: 'sessions#new'
  post 'signin', to: 'sessions#create'
   root :to => "projects#index"
@@ -12,9 +17,7 @@ Rails.application.routes.draw do
      end
       resources :users
 
-      namespace :admin do
-        root :to => "base#index"
-        resources :users
+     
       end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -71,4 +74,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+

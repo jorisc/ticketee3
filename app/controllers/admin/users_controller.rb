@@ -8,6 +8,9 @@ class Admin::UsersController < Admin::BaseController
   	@user = User.new
   end
 
+  def show
+  end
+
   def create
   	params = user_params.dup
 params[:password_confirmation] = params[:password]
@@ -20,10 +23,12 @@ flash.now[:alert] = "User has not been created."
 render :action => "new"
 end
 end
+
+
 private
+
 def user_params
-params.require(:user).permit(:name,
-:password, :password_confirmation)
+params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
 end
 
   
