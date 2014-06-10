@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-  resources :users
+    resources :users
   end
 
  get '/signin', to: 'sessions#new'
@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     resources :tickets
      end
       resources :users
+
+      namespace :admin do
+        root :to => "base#index"
+        resources :users
+      end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -27,8 +27,15 @@
 
   <nav>
   <ul>
+  <% if current_user %>
+Signed in as <%= current_user.email %>
+<% admins_only do %>
+<%= link_to "Admin", admin_root_path %>
+<% end %>
+<% else %>
 <li> <%= link_to "Sign up", new_user_path %> </li>
 <li> <%= link_to "Sign in", signin_path %> </li>
+<% end %>
 </ul>
 </nav>
 
