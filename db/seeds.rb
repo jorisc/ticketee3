@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+if !User.first
+    p "creating temp user"
+    u = User.create(name: "joris", password: "admin", email: "info@u-map.eu", admin: true) #new pw umap 
+end

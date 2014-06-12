@@ -24,8 +24,8 @@ feature "Creating Users" do
 		check "Is an admin?"
 		click_button "Create User"
 		expect(page).to have_content("User has been created")
-		##within("#users") do
-		##	expect(page).to have_content("admin@example.com (Admin)")
-		##end
+		within("#users") do
+			expect(page).to have_content("admin@example.com (Admin)")
+		end
 	end
 end
