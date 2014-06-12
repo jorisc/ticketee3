@@ -1,7 +1,8 @@
 class TicketsController < ApplicationController
-	before_action :require_signin!, except: [:index, :show]
+	before_action :require_signin!
 	before_filter :find_project
 	before_filter :find_ticket , only: [:show, :edit, :update, :destroy]
+	before_action :authorize_create!, only: [:new, :create]
 	
 
 	def new 
@@ -50,7 +51,10 @@ class TicketsController < ApplicationController
 	private
 
 	def find_project
-        @project = Project.find(params[:project_id])
+        @project = Project.for(current_user).find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+    	flash[:alert] = "The project you were looking for could not be found"
+    	redirect_to root_path
     end
 
     def find_ticket
@@ -60,5 +64,13 @@ class TicketsController < ApplicationController
     def ticket_params 
     	params.require(:ticket).permit(:title, :description)
     end
+
+    def authorize_create!
+    	if !current_user.admin? && cannot?("create tickets".to_sym, @project)
+    		flash[:alert] = "You cannot create tickets on this project."
+    		redirect_to @project
+    	end
+    end
+
 
 end
