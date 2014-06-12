@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
 	before_filter :find_project
 	before_filter :find_ticket , only: [:show, :edit, :update, :destroy]
 	before_action :authorize_create!, only: [:new, :create]
+	before_action :authorize_update!, only: [:edit, :update]
 	
 
 	def new 
@@ -71,6 +72,14 @@ class TicketsController < ApplicationController
     		redirect_to @project
     	end
     end
+
+    def authorize_update!
+    	if !current_user.admin? && cannot?("edit tickets".to_sym, @project)
+    		flash[:alert] = "You cannot edit tickets on this project."
+    		redirect_to @project
+    	end
+    end
+
 
 
 end

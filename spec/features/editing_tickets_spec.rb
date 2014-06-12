@@ -11,8 +11,9 @@ feature "Editing tickets" do
 
 	before do
 	define_permission!(user, "view", project)
-	visit '/'
+	define_permission!(user, "edit tickets", project)
 	sign_in_as!(user)
+	visit '/'
 	click_link project.name
 	click_link ticket.title
 	click_link "Edit Ticket"
