@@ -2,10 +2,11 @@ require 'spec_helper'
 
 feature "Viewing tickets" do
   before do
-    textmate_2 = FactoryGirl.create(:project,
-                                    name: "TextMate 2")
-
+    textmate_2 = FactoryGirl.create(:project, name: "TextMate 2")
     user = FactoryGirl.create(:user)
+    define_permission!(user, "view", textmate_2)
+
+    
     ticket = FactoryGirl.create(:ticket,
             project: textmate_2,
             title: "Make it shiny!",
@@ -20,11 +21,13 @@ feature "Viewing tickets" do
             title: "Standards compliance",
             description: "Isn't a joke.")
 
-   
-    visit '/'
+  
+    sign_in_as!(user)
+   visit '/'
   end
 
   scenario "Viewing tickets for a given project" do
+
     click_link "TextMate 2"
 
     expect(page).to have_content("Make it shiny!")
