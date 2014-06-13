@@ -35,6 +35,8 @@ end
 
 gem 'cancan', '~> 1.6.10'
 
+gem 'carrierwave', '0.8.0'
+
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
