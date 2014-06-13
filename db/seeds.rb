@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-if !User.first
-    p "creating temp user"
-    u = User.create(name: "joris", password: "admin", email: "info@u-map.eu", admin: true) #new pw umap 
-end
+
+
+admin_user = User.create(email: "admin@example.com", name: "joris", password: "admin", password_confirmation: "admin", admin: true)
+
+Project.create(name: "Ticketee Beta")
