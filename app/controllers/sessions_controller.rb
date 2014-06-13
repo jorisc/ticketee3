@@ -2,6 +2,14 @@ class SessionsController < ApplicationController
 	def new
 	end
 	
+	def destroy
+		session[:user_id] = nil
+		flash[:notice] = "Signed out successfully."
+
+		redirect_to root_url
+	end
+
+
 	def create
 		user = User.where(:name => params[:signin][:name]).first
 		if user && user.authenticate(params[:signin][:password])
@@ -12,6 +20,8 @@ class SessionsController < ApplicationController
 				flash[:error] = "Sorry."
 				render :new
 			end
-		end
+		
+	end
+
 	end
 	
