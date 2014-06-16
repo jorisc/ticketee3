@@ -18,6 +18,9 @@ Rails.application.routes.draw do
  post 'signin', to: 'sessions#create'
   root :to => "projects#index"
 
+  resources :files
+
+
   
   resources :projects do
     resources :tickets
