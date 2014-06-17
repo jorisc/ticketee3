@@ -40,8 +40,11 @@ feature "Creating comments" do
   	select "Open", from: "State"
   	click_button  "Create Comment"
   	expect(page).to have_content("Comment has been created")
-  	within ("#ticket .state") do
+  	within(:xpath, '//div[@id="ticket"]/div[@class="state state_open"]') do   #because "#ticket .state" is ambiguous
   		expect(page).to have_content("Open")
   	end
+    within ("#comments") do
+      page.should have_content("State: Open")
+    end
   end
 end
