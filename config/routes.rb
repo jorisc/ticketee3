@@ -11,6 +11,7 @@ Rails.application.routes.draw do
           put "permissions", to: "permissions#set",
           as: "set_permissions"
         end
+        resources :states
       end
 
  get '/signin', to: 'sessions#new'
