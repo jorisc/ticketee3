@@ -40,12 +40,18 @@ class TicketsController < ApplicationController
 	end
 
 
+	def search
+		@tickets = @project.tickets.search(params[:search])
+		render "projects/show"
+	end
+
+
 
 	def create
 		if cannot?(:tag, @project)
 			params[:ticket].delete(:tag_names)
 		end
-		
+
 		@ticket = @project.tickets.build(ticket_params)
 		@ticket.user = current_user
 		if @ticket.save
