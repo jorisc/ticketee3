@@ -56,4 +56,22 @@ feature "Creating comments" do
     message = "Expected not to see #comment_state_id, but did."
     find_element.should(raise_error(Capybara::ElementNotFound), message)
   end
+
+
+  scenario "Adding a tag to a ticket" do
+    click_link ticket.title
+    within("#ticket #tags") do
+      expect(page).to_not have_content("bug")
+   end
+
+    fill_in "Text", with: "Adding the bug tag"
+    fill_in "Tag names", with: "bug"
+    click_button "Create Comment"
+
+    expect(page).to have_content("Comment has been created.")
+    within("#ticket #tags") do
+      expect(page).to have_content("bug")
+    end
+  end
+
 end
