@@ -50,4 +50,5 @@ feature "Searching" do
       expect(page).to have_content("Create projects")
       expect(page).to_not have_content("Create users")
     end
+	end
 end
