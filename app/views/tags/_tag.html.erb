@@ -7,6 +7,13 @@
 <% end %>
 
 
-<span class='tag'> 
-<%= tag.name %> 
+
+
+<span class='tag'>
+<%= link_to tag.name,
+            search_project_tickets_path(
+              @ticket.project,
+              search: "tag:#{tag.name}"
+            )
+%>
 </span>
