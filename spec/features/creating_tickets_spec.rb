@@ -61,8 +61,8 @@ feature "Creating Tickets" do
 			expect(page).to have_content("spin.txt")
 		end
 	end
-=end
 
+=end
 	scenario "Creating a ticket with tags" do
 		fill_in "Title", with: "Non-standards compliance"
 		fill_in "Description", with: "My pages are ugly!"
@@ -74,4 +74,7 @@ feature "Creating Tickets" do
 			expect(page).to have_content("visual")
 		end
 	end
+
+	scenario "Adding a tag to a ticket" do
+		click_link ticket.title
 end
