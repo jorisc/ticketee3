@@ -23,6 +23,10 @@ class CommentsController < ApplicationController
       if cannot?(:"change states", @ticket.project)
         params[:comment].delete(:state_id)
       end
+
+      if cannot?(:tag, @ticket.project)
+      	params[:comment].delete(:tag_names)
+      end
   end
 
 	def find_ticket
